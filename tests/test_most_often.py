@@ -15,7 +15,7 @@ add_new
 
 get_most_often
 -> store a list
--> goes through the hole list -> loop test
+-> goes through the whole list -> loop test
 -> needs a place to store the count -> is the output the 
 same as the expected output 
 outputs 
@@ -62,3 +62,24 @@ def test_MostOften_add_new_several_more():
     mo.add_new(new_item2)
 
     assert len(test_list) == 5
+
+def test_MostOften_add_new_item_at_end():
+    test_list = [1, 2, 3]
+    new_item = [4]
+    mo = MostOften(test_list)
+    mo.add_new(new_item)
+    assert [4] == mo.starting_list[-1]
+
+# Testing most often
+
+def test_most_often_get_most_returns_most():
+    test_list = [1, 2, 3, 3]
+    mo = MostOften(test_list)
+    result = mo.get_most_often()
+    assert result == 3
+
+def test_most_often_get_most_returns_message():
+    test_list = [1, 2, 3, 3, 4, 4]
+    mo = MostOften(test_list)
+    result = mo.get_most_often()
+    assert result == "no clear winner"
